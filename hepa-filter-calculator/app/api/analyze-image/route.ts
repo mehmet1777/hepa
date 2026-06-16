@@ -76,6 +76,8 @@ SADECE bu JSON formatında cevap ver (başka hiçbir açıklama veya metin eklem
       
       try {
         const apiKey = apiKeys[i];
+        if (!apiKey) continue; // undefined ise atla
+        
         console.log(`Deneniyor: API Key ${i + 1}/${apiKeys.length}`);
         
         const genAI = new GoogleGenerativeAI(apiKey);
