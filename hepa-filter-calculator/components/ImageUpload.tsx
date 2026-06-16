@@ -61,7 +61,20 @@ export function ImageUpload({ onDataExtracted, onPreviewChange }: ImageUploadPro
         setFormData({ width: '', netWeight: '', length: '' });
       }
     } catch (error: any) {
-      alert(`Hata: ${error.message}\n\nManuel giriş yapabilirsiniz.`);
+      console.error('❌ Analiz hatası:', error);
+      
+      // Kullanıcı dostu Türkçe hata mesajı
+      let userMessage = 'Etiket okunamadı';
+      
+      if (error.message.includes('pattern') || error.message.includes('parse') || error.message.includes('JSON')) {
+        userMessage = 'Fotoğraf net değil. Lütfen daha yakın ve dik açıyla çekin';
+      } else if (error.message.includes('limit') || error.message.includes('quota') || error.message.includes('429')) {
+        userMessage = 'Günlük analiz limiti doldu';
+      } else if (error.message.includes('API key') || error.message.includes('bulunamadı')) {
+        userMessage = 'Servis geçici olarak kullanılamıyor';
+      }
+      
+      alert(`⚠️ ${userMessage}\n\nManuel giriş yapabilirsiniz.`);
       setShowEditForm(true);
       setFormData({ width: '', netWeight: '', length: '' });
     } finally {

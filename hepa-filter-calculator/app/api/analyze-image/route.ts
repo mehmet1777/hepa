@@ -60,7 +60,12 @@ Etikette tabloda şu bilgiler var:
 - "Net Weight" satırında net ağırlık (örn: 59.9 kg)
 - "Length" satırında uzunluk (örn: 880 m)
 
-SADECE bu JSON formatında cevap ver (başka hiçbir açıklama veya metin ekleme):
+ÖNEMLİ:
+- Eğer bir değer okunamıyorsa 0 yaz
+- MUTLAKA sadece JSON formatında cevap ver
+- Başka hiçbir metin, açıklama veya markdown ekleme
+- Sadece bu formatta yanıt ver:
+
 {
   "width": 896,
   "netWeight": 59.9,
