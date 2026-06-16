@@ -8,6 +8,7 @@ import { DiameterInput } from './DiameterInput';
 import { ResultsCard } from './ResultsCard';
 
 export interface FilterData {
+  grade?: string; // HEPA grade (örn: C-F7NEW, H14)
   width: number;  // mm cinsinden
   netWeight: number;  // kg
   length: number;  // metre

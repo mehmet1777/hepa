@@ -56,6 +56,10 @@ export function ImageUpload({ onDataExtracted, onPreviewChange }: ImageUploadPro
           netWeight: data.netWeight.toString(),
           length: data.length.toString(),
         });
+        // Grade'i de kaydet (opsiyonel)
+        if (data.grade && data.grade !== 'unknown') {
+          (window as any).hepaGrade = data.grade;
+        }
       } else {
         setShowEditForm(true);
         setFormData({ width: '', netWeight: '', length: '' });
@@ -89,7 +93,8 @@ export function ImageUpload({ onDataExtracted, onPreviewChange }: ImageUploadPro
     const len = parseFloat(formData.length);
 
     if (!isNaN(w) && !isNaN(weight) && !isNaN(len) && w > 0 && weight > 0 && len > 0) {
-      onDataExtracted({ width: w, netWeight: weight, length: len });
+      const grade = (window as any).hepaGrade || undefined;
+      onDataExtracted({ grade, width: w, netWeight: weight, length: len });
       setShowEditForm(false);
     }
   };

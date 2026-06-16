@@ -17,15 +17,13 @@ export function ResultsCard({ results, originalData, diameter, onReset }: Result
   const percentage = Math.round(ratio * 100);
 
   const handleWhatsAppShare = () => {
-    const message = `🔵 HEPA Filtre Sonuç\n\n` +
-      `📏 Kalan Ağırlık: ${results.remainingWeight} kg\n` +
-      `   (Orijinal: ${originalData.netWeight} kg)\n\n` +
-      `📐 Kalan Uzunluk: ${results.remainingLength} m\n` +
-      `   (Orijinal: ${originalData.length} m)\n\n` +
-      `📊 Kalan Oran: ${percentage}%\n\n` +
-      `📍 Mevcut çap: ${diameter} cm\n` +
-      `📍 Tam dolu çap: 75 cm\n\n` +
-      `🔗 hepa.vercel.app`;
+    const gradeWidth = originalData.grade 
+      ? `${originalData.grade} - ${originalData.width}` 
+      : `${originalData.width}`;
+    
+    const message = `${gradeWidth}\n` +
+      `Güncel kilo: ${results.remainingWeight} kg\n` +
+      `Güncel uzunluk: ${results.remainingLength} m`;
 
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/?text=${encodedMessage}`;

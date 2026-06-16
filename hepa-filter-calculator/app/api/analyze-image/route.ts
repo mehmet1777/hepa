@@ -51,25 +51,28 @@ export async function POST(request: NextRequest) {
     };
 
     const prompt = `Bu HEPA filtre etiketi görüntüsünden şu bilgileri çıkar:
-1. Width (Genişlik) - mm cinsinden sayı olarak
-2. Net Weight (Net Ağırlık) - kg cinsinden sayı olarak  
-3. Length (Uzunluk) - metre cinsinden sayı olarak
+1. Grade - metin olarak (örn: C-F7NEW, H14, H13)
+2. Width (Genişlik) - mm cinsinden sayı olarak
+3. Net Weight (Net Ağırlık) - kg cinsinden sayı olarak  
+4. Length (Uzunluk) - metre cinsinden sayı olarak
 
 Etikette tabloda şu bilgiler var:
-- "Width" satırında genişlik değeri (örn: 896.0 mm veya 896 mm)
-- "Net Weight" satırında net ağırlık (örn: 59.9 kg)
-- "Length" satırında uzunluk (örn: 880 m)
+- "Grade" satırında grade kodu (örn: C-F7NEW)
+- "Width" satırında genişlik değeri (örn: 1,096.0 mm veya 1096 mm)
+- "Net Weight" satırında net ağırlık (örn: 70.2 kg)
+- "Length" satırında uzunluk (örn: 960 m)
 
 ÖNEMLİ:
-- Eğer bir değer okunamıyorsa 0 yaz
+- Eğer bir değer okunamıyorsa 0 yaz (grade için "unknown")
 - MUTLAKA sadece JSON formatında cevap ver
 - Başka hiçbir metin, açıklama veya markdown ekleme
 - Sadece bu formatta yanıt ver:
 
 {
-  "width": 896,
-  "netWeight": 59.9,
-  "length": 880
+  "grade": "C-F7NEW",
+  "width": 1096,
+  "netWeight": 70.2,
+  "length": 960
 }`;
 
     // Tüm API keyleri dene (son başarılı key'den başla)
